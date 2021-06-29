@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import { StoreModel } from '../../../models/StoreModel';
 import './AvailableSpotsContainerStyles.css';
 
 interface AvailableSpotsContainerProps {
-    store: any;
+    store: StoreModel;
 }
 
 const AvailableSpotsContainer = ({ store }: AvailableSpotsContainerProps) => {
@@ -13,8 +14,11 @@ const AvailableSpotsContainer = ({ store }: AvailableSpotsContainerProps) => {
         if (store) {
             let count = 0;
             Object.keys(store).map((columnNumber) => {
-                return Object.keys(store[columnNumber].spots).map((spotNumber) => {
-                    if (store[columnNumber].spots[spotNumber].available) {
+                const columnNumberIntValue = parseInt(columnNumber);
+                return Object.keys(store[columnNumberIntValue].spots).map((spotNumber) => {
+                    const spotNumberIntValue = parseInt(spotNumber);
+
+                    if (store[columnNumberIntValue].spots[spotNumberIntValue].available) {
                         count++;
                     }
                     return 0;

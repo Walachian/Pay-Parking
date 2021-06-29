@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useSpring, animated } from "react-spring";
+import { SpotDataModel, SpotModel } from '../../../models/SpotModel';
 import './ExitParkingModal.css';
 
 interface ExitParkingModalProps {
     visible: boolean;
-    spot: any;
-    removeCar: (spot: any) => void;
+    spot?: SpotModel;
+    removeCar: (spot?: SpotModel) => void;
     closeModal: () => void;
 }
 
 const ExitParkingModal = ({ visible, spot, removeCar, closeModal }: ExitParkingModalProps) => {
-    const [parkingData, setParkingData] = useState<any>();
+    const [parkingData, setParkingData] = useState<SpotDataModel>();
 
     const [startDate, setStartDate] = useState<Date>(new Date());
     const [elapsedTime, setElapsedTime] = useState<number>(0);
@@ -32,10 +33,12 @@ const ExitParkingModal = ({ visible, spot, removeCar, closeModal }: ExitParkingM
     });
 
     useEffect(() => {
-        const newStart = new Date(spot?.spotData.startTime);
+        if (spot) {
+            const newStart = new Date(spot?.spotData.startTime);
 
-        setParkingData(spot?.spotData);
-        setStartDate(new Date(spot?.spotData.startTime));
+            setParkingData(spot?.spotData);
+            setStartDate(new Date(spot?.spotData.startTime));
+        }
     }, [spot]);
 
     useEffect(() => {

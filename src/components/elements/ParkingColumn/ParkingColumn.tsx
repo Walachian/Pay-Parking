@@ -1,19 +1,20 @@
-import React from 'react';
+import { SpotDataModel, SpotModel } from '../../../models/SpotModel';
+import { ColumnData } from '../../../models/StoreModel';
 import ParkingSpot from "../ParkingSpot/ParkingSpot"
 
 interface ParkingColumnProps {
-    columnData: any;
+    columnData: ColumnData;
     columnNumber: number;
     borderLeft?: boolean;
     borderRight?: boolean;
-    toggleAddCarModal: (selectedSpot?: any) => void;
-    toggleExitParkingModal: (selectedSpot?: any) => void;
+    toggleAddCarModal: (selectedSpot?: SpotModel) => void;
+    toggleExitParkingModal: (selectedSpot?: SpotModel) => void;
 }
 
 const ParkingColumn = ({ columnData, columnNumber, borderLeft, borderRight, toggleAddCarModal, toggleExitParkingModal }: ParkingColumnProps) => {
 
-    const openAddModal = (spotNumber: number, spotData: any) => {
-        const selectedSpotObject = {
+    const openAddModal = (spotNumber: number, spotData: SpotDataModel) => {
+        const selectedSpotObject: SpotModel = {
             columnNumber,
             spotNumber,
             spotData,
@@ -22,8 +23,8 @@ const ParkingColumn = ({ columnData, columnNumber, borderLeft, borderRight, togg
         toggleAddCarModal(selectedSpotObject);
     }
 
-    const openExitModal = (spotNumber: number, spotData: any) => {
-        const selectedSpotObject = {
+    const openExitModal = (spotNumber: number, spotData: SpotDataModel) => {
+        const selectedSpotObject: SpotModel = {
             columnNumber,
             spotNumber,
             spotData,
@@ -38,7 +39,8 @@ const ParkingColumn = ({ columnData, columnNumber, borderLeft, borderRight, togg
         ${borderLeft ? "right-column " : ""}
         `}>
             {Object.keys(columnData?.spots).map((item, index, arr) => {
-                const spotData = { ...columnData?.spots[item] };
+                const itemIntValue = parseInt(item);
+                const spotData = { ...columnData?.spots[itemIntValue] };
                 const spotNumber = parseInt(item);
 
                 return <ParkingSpot

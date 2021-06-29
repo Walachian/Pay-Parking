@@ -1,8 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { Ref, useEffect, useRef, useState } from 'react';
 import "./TimeContainer.css"
 import clock from '../../../assets/clock.svg'
 
-const TimeContainer = (props: any) => {
+interface TimeContainerProps {
+
+}
+
+const TimeContainer = ({ }: TimeContainerProps) => {
 
     const [hours, setHours] = useState<string>("00");
     const [minutes, setMinutes] = useState<string>("00");
@@ -43,7 +47,7 @@ const TimeContainer = (props: any) => {
     return (
         <div className="clock-container">
             <img src={clock} alt="Clock" id="clock-svg-icon" />
-            <p className="top-infos-text">{hours}:{minutes}:{seconds}</p>
+            <p className="top-infos-text">{hours}:{minutes}</p>
         </div>
     );
 }

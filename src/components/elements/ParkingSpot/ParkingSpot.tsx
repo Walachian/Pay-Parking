@@ -1,11 +1,12 @@
 import React from 'react';
 import './ParkingSpot.css';
 import car from '../../../assets/car.svg'
+import { SpotDataModel } from '../../../models/SpotModel';
 
 interface ParkingSpotProps {
     lastInColumn?: boolean;
     spotNumber: number;
-    spotData: any,
+    spotData: SpotDataModel,
     faceRight: boolean;
     toggleAddCarModal?: () => void;
     toggleExitParkingModal?: () => void;
