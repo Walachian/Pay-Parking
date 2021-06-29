@@ -7,78 +7,19 @@ import AddCarModal from './components/modals/AddCarModal/AddCarModal';
 import ExitParkingModal from './components/modals/ExitParkingModal/ExitParkingModal';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { DefaultStore, StoreModel } from './models/StoreModel';
+import { SpotModel } from './models/SpotModel';
 
 function App() {
 
   const [showAddCarModal, setShowAddCarModal] = useState<boolean>(false);
   const [showExitParkingModal, setShowExitParkingModal] = useState<boolean>(false);
-  const [store, setStore] = useState<any>({});
-  const [selectedSpot, setSelectedSpot] = useState<any>();
+  const [store, setStore] = useState<StoreModel>({});
+  const [selectedSpot, setSelectedSpot] = useState<SpotModel>();
 
 
   const initStore = () => {
-    setStore({
-      0: {
-        "faceRight": true,
-        "spots": {
-          0: {
-            available: true,
-            startTime: 0,
-            plateNumber: "",
-          },
-          1: {
-            available: true,
-            startTime: 0,
-            plateNumber: "",
-          },
-          2: {
-            available: true,
-            startTime: 0,
-            plateNumber: "",
-          },
-          3: {
-            available: true,
-            startTime: 0,
-            plateNumber: "",
-          },
-          4: {
-            available: true,
-            startTime: 0,
-            plateNumber: "",
-          }
-        }
-      },
-      1: {
-        "faceRight": false,
-        "spots": {
-          0: {
-            available: true,
-            startTime: 0,
-            plateNumber: "",
-          },
-          1: {
-            available: true,
-            startTime: 0,
-            plateNumber: "",
-          },
-          2: {
-            available: true,
-            startTime: 0,
-            plateNumber: "",
-          },
-          3: {
-            available: true,
-            startTime: 0,
-            plateNumber: "",
-          },
-          4: {
-            available: true,
-            startTime: 0,
-            plateNumber: "",
-          }
-        }
-      },
-    });
+    setStore(DefaultStore)
   }
 
   useEffect(() => {
@@ -86,8 +27,8 @@ function App() {
   }, []);
 
 
-  const addCar = (plateNumber: string, spot: any) => {
-    const storeCopy: any = {};
+  const addCar = (plateNumber: string, spot: SpotModel) => {
+    const storeCopy: StoreModel = {};
     Object.assign(storeCopy, store);
 
     const colNumber = spot?.columnNumber;
@@ -106,34 +47,37 @@ function App() {
   }
 
 
-  const removeCar = (spot: any) => {
+  const removeCar = (spot?: SpotModel) => {
     console.log("remove car for :", spot);
-    const storeCopy: any = {};
-    Object.assign(storeCopy, store);
+    if (spot) {
+      const storeCopy: StoreModel = {};
+      Object.assign(storeCopy, store);
 
-    const colNumber = spot?.columnNumber;
-    const spotNumber = spot?.spotNumber;
+      const colNumber = spot?.columnNumber;
+      const spotNumber = spot?.spotNumber;
 
-    const newSpotEntry = {
-      available: true,
-      plateNumber: "",
-      startTime: 0,
+      const newSpotEntry = {
+        available: true,
+        plateNumber: "",
+        startTime: 0,
+      }
+
+      storeCopy[colNumber].spots[spotNumber] = newSpotEntry;
+      setStore(storeCopy);
+      toggleExitParkingModal();
     }
-
-    storeCopy[colNumber].spots[spotNumber] = newSpotEntry;
-    setStore(storeCopy);
-    toggleExitParkingModal();
   }
 
 
-  const toggleAddCarModal = (spot?: any) => {
+  const toggleAddCarModal = (spot?: SpotModel) => {
     // if (spot)
+    console.log("spot: ", spot);
     setSelectedSpot(spot);
 
     setShowAddCarModal(lastValue => !lastValue);
   }
 
-  const toggleExitParkingModal = (spot?: any) => {
+  const toggleExitParkingModal = (spot?: SpotModel) => {
     // if (spot)
     setSelectedSpot(spot);
 
@@ -146,10 +90,12 @@ function App() {
         <AvailableSpotsContainer store={store} />
         <div className="middle-container">
           {Object.keys(store).map((item) => {
+            const itemIntValue = parseInt(item);
+
             return <ParkingColumn
-              columnNumber={parseInt(item)}
-              columnData={store[item]}
-              borderRight={parseInt(item) === 0}
+              columnNumber={itemIntValue}
+              columnData={store[itemIntValue]}
+              borderRight={itemIntValue === 0}
               toggleExitParkingModal={toggleExitParkingModal}
               toggleAddCarModal={toggleAddCarModal}
             />
