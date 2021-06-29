@@ -1,0 +1,43 @@
+.available-spots-container {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+    padding-top: 5%;
+}
+
+.top-infos-text {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  text-align: center;
+  font-size: 35px;
+}
+
+.top-infos-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFF8F5;
+  border: 4px solid #000;
+  margin: 0 5px;
+  padding: 20px;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  transition: all 0.2s ease;
+}
+
+.top-infos-button-text {
+    font-weight: bold;
+}
+
+.top-infos-button:active {
+  background-color: #000;
+}
+
+.top-infos-button:active #available-spots-button-text {
+  color:#FFF8F5;
+}

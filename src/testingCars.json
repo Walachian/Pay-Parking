@@ -1,0 +1,17 @@
+{
+    "1": {
+        "faceRight": true,
+        "spots": {
+            "1": {
+                "available": true,
+                "startTime": 12345,
+                "plateNumber": ""
+            },
+            "2": {},
+            "3": {},
+            "4": {},
+            "5": {}
+        }
+    },
+    "2": {}
+}

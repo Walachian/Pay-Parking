@@ -1,0 +1,62 @@
+.parking-spot {
+  border-bottom: 10px solid black;
+  display: flex;
+  padding: 0 10px;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+}
+
+.last-spot-in-column {
+  border-bottom: none;
+}
+
+.parking-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFF8F5;
+  border: 3px solid #000;
+  padding: 15px;
+  border-radius: 50%;
+  width: 0;
+  height: 0;
+  transition: 0.2s all ease;
+}
+
+.parking-button:active {
+  background-color: #000;
+}
+
+.parking-button:active .parking-button-text{
+  color: #FFF;
+}
+
+
+.parking-button-text{
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.car-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFF8F5;
+  border: none;
+  padding: 0;
+}
+
+.car-image {
+  width: 70px;
+  transform: rotateZ(-90deg);
+}
+
+.reversed-car {
+  transform: rotateZ(180deg);
+}

@@ -1,38 +1,61 @@
+ @import url('https://fonts.googleapis.com/css2?family=Rambla&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
+
+*/
+
 .App {
-  text-align: center;
+  height: auto;
+  width: 100vw;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-container {
+  display: flex;
+  justify-content: space-around;
+  background-color: #FFF8F5;
+  padding: 10px 30px;
+  border-radius: 50px;
+  filter: drop-shadow(0px 6px 5px rgba(0, 0, 0, 0.25));
+  font-family: 'Rambla', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.middle-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 20% 0 5% 0;
+  margin: 0 15px 0 15px;
+  width: 300px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.parking-spots-column {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 100%;
+}
+
+.left-column {
+  border-right: 10px solid black;
+}
+
+.modal-container {
+    display: flex;
+  height: 100%;
+  width: 100%;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.modal-backdrop {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #000000B0;
 }
