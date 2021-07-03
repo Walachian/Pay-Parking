@@ -1,5 +1,4 @@
-import { Ref, useEffect, useRef, useState } from 'react';
-import "./TimeContainer.css"
+import { useEffect, useRef, useState } from 'react';
 import clock from '../../../assets/clock.svg'
 
 interface TimeContainerProps {
@@ -44,10 +43,11 @@ const TimeContainer = ({ }: TimeContainerProps) => {
         }, 1000);
     }
 
+
     return (
-        <div className="clock-container">
-            <img src={clock} alt="Clock" id="clock-svg-icon" />
-            <p className="top-infos-text">{hours}:{minutes}</p>
+        <div className="flex flex-col justify-center items-center max-h-24 select-none">
+            <img src={clock} alt="Clock" className="w-12 h-12" />
+            <p className="mt-2 text-4xl">{hours}:{minutes}</p>
         </div>
     );
 }

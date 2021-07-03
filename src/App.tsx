@@ -84,11 +84,12 @@ function App() {
     setShowExitParkingModal(lastValue => !lastValue);
   }
 
+
   return (
-    <div className="min-h-screen w-screen">
-      <div className="app-container">
+    <div className="min-h-screen w-screen flex justify-center items-center">
+      <div className="flex justify-around bg-yellow-50 px-5 py-3 rounded-3xl app-container">
         <AvailableSpotsContainer store={store} />
-        <div className="middle-container">
+        <div className="flex flex-row justify-center items-center pt-28 w-60 mx-10">
           {Object.keys(store).map((item) => {
             const itemIntValue = parseInt(item);
 

@@ -34,7 +34,7 @@ const ParkingColumn = ({ columnData, columnNumber, borderLeft, borderRight, togg
     }
 
     return (
-        <div className={`parking-spots-column 
+        <div className={`flex flex-col w-full 
         ${borderRight ? "left-column " : ""}
         ${borderLeft ? "right-column " : ""}
         `}>

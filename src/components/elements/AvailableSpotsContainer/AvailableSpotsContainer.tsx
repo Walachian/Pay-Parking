@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { StoreModel } from '../../../models/StoreModel';
-import './AvailableSpotsContainerStyles.css';
 
 interface AvailableSpotsContainerProps {
     store: StoreModel;
@@ -29,12 +28,15 @@ const AvailableSpotsContainer = ({ store }: AvailableSpotsContainerProps) => {
         }
     }, [store]);
 
+
+
     return (
-        <div className="available-spots-container h-">
-            <p className="top-infos-text">{availablePlacesCount}</p>
-            <button className="top-infos-button">
-                <p className="top-infos-text top-infos-button-text" id="available-spots-button-text">P</p>
-            </button>
+        <div className="h-16 flex justify-center items-center flex-row pt-3 select-none">
+            <p className="text-center text-4xl">{availablePlacesCount}</p>
+            <div className="flex justify-center items-center bg-transparent border-4 border-black
+            rounded-full mx-2 p-5 w-0 h-0 top-infos-button">
+                <p className="font-bold text-3xl">P</p>
+            </div>
         </div>
     );
 }

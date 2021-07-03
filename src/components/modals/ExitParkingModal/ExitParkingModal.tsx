@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useSpring, animated } from "react-spring";
 import { SpotDataModel, SpotModel } from '../../../models/SpotModel';
-import './ExitParkingModal.css';
 
 interface ExitParkingModalProps {
     visible: boolean;
@@ -59,24 +58,30 @@ const ExitParkingModal = ({ visible, spot, removeCar, closeModal }: ExitParkingM
     }, [elapsedTime]);
 
 
+
+
     return (
         <>
             {visible
-                ? <div className="modal-container">
-                    <div className="modal-backdrop" onClick={() => closeModal()} />
+                ? <div className="flex h-full w-full justify-center items-center absolute top-0 left-0">
+                    <div className="flex h-full w-full absolute top-0 left-0 bg-black opacity-70" onClick={() => closeModal()} />
                     <animated.div style={animation}>
-                        <div className="exit-parking-modal">
-                            <label className="exit-parking-modal-title">Parking session info</label>
-                            <div className="exit-parking-labels-container">
-                                <p className="exit-parking-label">Plate Number : {parkingData?.plateNumber}</p>
-                                <p className="exit-parking-label">Start Time :
+                        <div className="h-auto w-auto px-20 py-24 flex flex-col justify-center items-center
+                         rounded-3xl bg-yellow-50 modal-style">
+                            <label className="absolute top-0 p-4 text-center text-4xl font-bold text-gray-900">Parking session info</label>
+                            <div className="py-12">
+                                <p className="my-3 flex justify-center items-center text-2xl">Plate Number : {parkingData?.plateNumber}</p>
+                                <p className="my-3 flex justify-center items-center text-2xl">Start Time :
                                     {startDate.getHours() < 10 ? " 0" + startHour : " " + startHour}:
                                     {startDate.getMinutes() < 10 ? "0" + startMinutes : startMinutes}</p>
-                                <p className="exit-parking-label">Elapsed Time : {displayTime}</p>
-                                <p className="exit-parking-label">Amount to pay : {price} RON</p>
+                                <p className="my-3 flex justify-center items-center text-2xl">Elapsed Time : {displayTime}</p>
+                                <p className="my-3 flex justify-center items-center text-2xl">Amount to pay : {price} RON</p>
                             </div>
-                            <button className="add-car-modal-button" onClick={() => removeCar(spot)}>
-                                <p className="add-car-modal-button-text">Leave Parking</p>
+                            <button className="absolute bottom-0 w-3/4 h-16 border-none bg-gray-800
+                        text-3xl text-yellow-50 rounded-t-full"
+                                onClick={() => removeCar(spot)}>
+                                <p className="p-0 m-0">
+                                    Leave Parking</p>
                             </button>
                         </div>
                     </animated.div>
